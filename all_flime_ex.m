@@ -42,8 +42,11 @@ for frame= frame_start:50:last_frame;
   distance_mm=[distance_mm temp_dist;];
 end
 
+
+
 t=transpose(t);
 distance_mm=transpose(distance_mm);
+% tim= table(t,distance_mm)
 %% plot Distance VS Time Graph
 figure;
 plot(t,distance_mm);
