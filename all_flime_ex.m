@@ -46,7 +46,7 @@ end
 
 t=transpose(t);
 distance_mm=transpose(distance_mm);
-% tim= table(t,distance_mm)
+
 %% plot Distance VS Time Graph
 figure;
 plot(t,distance_mm);
@@ -56,5 +56,10 @@ ylabel('d (mm)');
 %% plot Distance VS frame Graph
 % figure;
 % plot(frames,distance_mm);
+%% Write to excel
+
+% tim= table(t,distance_mm)
+%filename = 'data.xlsx';
+%writetable(tim,filename,'4mm',1)
 
 
