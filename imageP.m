@@ -2,14 +2,14 @@ clc;
 clear all;
 close all;
 %% variables
-file='videos\3rd\NewVideos\4mM.mp4';
-cropped_part=[365 1009 200 30];
+file='videos\light_secondary\8mM13jun.mp4';
+cropped_part=[555 1358 200 30];
  rotation_angle=90;
  pixel_no=89;
- brightness=165;
+ brightness=145;
  
 %%Frame Select
- frame_number=4000;
+ frame_number=7800;
   %% Load the video on a variable
   x=VideoReader(file);
   

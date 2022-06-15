@@ -2,11 +2,11 @@ clc;
 clear all;
 close all;
 %% variables
-file='.\videos\3rd\8mM.mp4';
-cropped_part=[702 830 200 30];
-rotation_angle=0;
-pixel_no=89;
-brightness=160;
+file='videos\light_secondary\8mM13jun.mp4';
+cropped_part=[555 1358 200 30];
+ rotation_angle=90;
+ pixel_no=89;
+ brightness=145;
 
 %% Empty array to store distance and times
 frame_start=50;
@@ -58,8 +58,8 @@ ylabel('d (mm)');
 % plot(frames,distance_mm);
 %% Write to excel
 
-% tim= table(t,distance_mm)
-%filename = 'data.xlsx';
-%writetable(tim,filename,'4mm',1)
+% tim= table(t,distance_mm);
+% filename = 'data.xlsx';
+% xlswrite(filename,data,'Output','F1');
 
 
