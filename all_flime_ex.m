@@ -46,10 +46,11 @@ end
 
 t=transpose(t);
 distance_mm=transpose(distance_mm);
+[time,distance]=shift_sig(t,distance_mm)
 
 %% plot Distance VS Time Graph
 figure;
-plot(t,distance_mm);
+plot(time,distance);
 xlabel('Time (s)');
 ylabel('d (mm)');
 
