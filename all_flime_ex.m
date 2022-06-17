@@ -3,10 +3,10 @@ clear all;
 close all;
 %% variables
 file='videos\light_secondary\8mM13jun.mp4';
-cropped_part=[555 1362 350 30];
+cropped_part=[612 760 350 30];
  rotation_angle=90;
  pixel_no=89;
- brightness=200;
+ brightness=210;
 
 %% Empty array to store distance and times
 frame_start=50;
@@ -59,8 +59,7 @@ ylabel('d (mm)');
 %% plot Distance VS frame Graph
 % figure;
 % plot(frames,distance_mm);
-%% Write to excel
 
-% tim= table(t,distance_mm);
+%% Write to excel
 % filename = 'data.xlsx';
-% xlswrite(filename,data,'Output','F1');
+% xlswrite(filename,time,'Output','F1');
