@@ -3,10 +3,10 @@ clear all;
 close all;
 %% variables
 file='videos\light_secondary\8mM13jun.mp4';
-cropped_part=[555 1358 200 30];
+cropped_part=[555 1362 350 30];
  rotation_angle=90;
  pixel_no=89;
- brightness=145;
+ brightness=200;
 
 %% Empty array to store distance and times
 frame_start=50;
@@ -28,10 +28,14 @@ for frame= frame_start:50:last_frame;
   rotated_img=imrotate(gray_img,rotation_angle); %rotated image
   t=[t frame/frame_rate-start_time;]; 
 
-  %% cropping 
-  croppedImage=imcrop(rotated_img,cropped_part);  
-  %% Find the avg 
-  avg=mean(croppedImage,1);
+  %% cropping & normalize the scale to 255
+  croppedImage=imcrop(rotated_img,cropped_part); 
+  ref_pixel=double(croppedImage(floor(size(croppedImage,1)/2),end));
+  croppedImage=double(croppedImage);
+  cropped=floor(croppedImage*(255/ref_pixel));
+  
+  %% Find the avg using mean function
+  avg=mean(cropped,1);
   %% find the index of brightest pixel 
   p=find(avg>brightness);
   if isempty(p)
@@ -42,11 +46,9 @@ for frame= frame_start:50:last_frame;
   distance_mm=[distance_mm temp_dist;];
 end
 
-
-
 t=transpose(t);
 distance_mm=transpose(distance_mm);
-[time,distance]=shift_sig(t,distance_mm)
+[time,distance]=shift_sig(t,distance_mm);
 
 %% plot Distance VS Time Graph
 figure;
@@ -62,5 +64,3 @@ ylabel('d (mm)');
 % tim= table(t,distance_mm);
 % filename = 'data.xlsx';
 % xlswrite(filename,data,'Output','F1');
-
-

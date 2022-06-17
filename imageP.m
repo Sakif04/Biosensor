@@ -3,23 +3,24 @@ clear all;
 close all;
 %% variables
 file='videos\light_secondary\8mM13jun.mp4';
-cropped_part=[555 1358 200 30];
+cropped_part=[555 1362 350 30];
  rotation_angle=90;
  pixel_no=89;
- brightness=145;
+ brightness=200;
  
 %%Frame Select
- frame_number=7800;
+ frame_number=7200;
   %% Load the video on a variable
   x=VideoReader(file);
   
   %% Select a frame number that we want to analyze
   img=read(x,frame_number);
-  
+  img2=read(x,501);
   %% Gray Conversion & rotation
   rotated_img=imrotate(img,rotation_angle);
   figure;
   imshow(rotated_img)
+  
   %% rotated image
   gray_img=rgb2gray(rotated_img);  
 
@@ -32,9 +33,12 @@ cropped_part=[555 1358 200 30];
   croppedImage=imcrop(gray_img,cropped_part);
   figure;
   imshow(croppedImage);
+  ref_pixel=double(croppedImage(floor(size(croppedImage,1)/2),end));
+  croppedImage=double(croppedImage);
+  cropped=floor(croppedImage*(255/ref_pixel));
   
   %% Find the avg using mean function
-  avg=mean(croppedImage,1);
+  avg=mean(cropped,1);
   
   %% Select color intensity
   p=find(avg>=brightness);% find the index of brightest pixels_width
