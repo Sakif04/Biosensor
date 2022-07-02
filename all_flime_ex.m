@@ -3,7 +3,7 @@ clear all;
 close all;
 %% variables
 file='videos\light_secondary\8mM13jun.mp4';
-cropped_part=[612 760 350 30];
+cropped_part=[524 1080 350 35];
  rotation_angle=90;
  pixel_no=89;
  brightness=210;
@@ -61,5 +61,5 @@ ylabel('d (mm)');
 % plot(frames,distance_mm);
 
 %% Write to excel
-% filename = 'data.xlsx';
-% xlswrite(filename,time,'Output','F1');
+% filename = 'mM_data.xlsx';
+% xlswrite(filename,time,'8mM','I1');

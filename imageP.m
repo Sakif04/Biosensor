@@ -3,13 +3,13 @@ clear all;
 close all;
 %% variables
 file='videos\light_secondary\8mM13jun.mp4';
-cropped_part=[612 760 350 30];
+cropped_part=[524 1080 350 35];
  rotation_angle=90;
  pixel_no=89;
  brightness=210;
  
 %%Frame Select
- frame_number=7200;
+ frame_number=6200;
   %% Load the video on a variable
   x=VideoReader(file);
   
