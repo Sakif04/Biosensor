@@ -1,4 +1,4 @@
-function [ time,distance ] = Shift_sig(tim,dist )
+function [ time,distance ] = shift_sig(tim,dist )
 %UNTITLED Summary of this function goes here
 %   Detailed explanation goes here
 indices=find(dist>= 0.12);

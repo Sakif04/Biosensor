@@ -1,18 +1,20 @@
 clc;
 clear all;
 close all;
-%% variables
-file='videos\light_secondary\8mM13jun.mp4';
-cropped_part=[524 1080 350 35];
- rotation_angle=90;
- pixel_no=89;
- brightness=210;
+
+%% Variables
+ file='E:\Biosensor\video_extraction\videos\8mM_Exp2.mp4';
+ cropped_part=[250 615 300 15];
+ rotation_angle=88;
+ pixel_no=75;
+ brightness=156;
  
-%%Frame Select
- frame_number=6200;
   %% Load the video on a variable
   x=VideoReader(file);
-  
+  %% Frame Select
+ last_frame=x.NumberOfFrames;
+ frame_number=500;
+ 
   %% Select a frame number that we want to analyze
   img=read(x,frame_number);
   img2=read(x,501);
@@ -20,13 +22,13 @@ cropped_part=[524 1080 350 35];
   rotated_img=imrotate(img,rotation_angle);
   figure;
   imshow(rotated_img)
+  %% Rotated image
+  gray_img=rgb2gray(rotated_img);
   
-  %% rotated image
-  gray_img=rgb2gray(rotated_img);  
-
+ 
   %% Cropped image 
   figure;
-  imshow(gray_img)
+  imshow(imcrop(rotated_img,cropped_part));
   %%cropped_part is selected in such way using a matrix
   %%where [x1,y1,width,hieght] x1=initial
   %%horizontal position and y1=initial vertical position
@@ -36,10 +38,8 @@ cropped_part=[524 1080 350 35];
   ref_pixel=double(croppedImage(floor(size(croppedImage,1)/2),end));
   croppedImage=double(croppedImage);
   cropped=floor(croppedImage*(255/ref_pixel));
-  
   %% Find the avg using mean function
   avg=mean(cropped,1);
-  
   %% Select color intensity
   p=find(avg>=brightness);% find the index of brightest pixels_width
   if isempty(p);
